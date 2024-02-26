@@ -3,7 +3,7 @@ import { LoadScript, GoogleMap } from "@react-google-maps/api";
 
 export default function Map() {
   return (
-    <div data-testid="google-maps" className="h-screen w-screen">
+    <div data-testid="google-maps" className="h-[700px] w-[700px]">
       <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_API_KEY}>
         <GoogleMap
           mapContainerStyle={{
