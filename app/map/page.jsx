@@ -8,7 +8,7 @@ export default function Page() {
   const [stations, setStations] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3002/map").then((res) => {
+    axios.get("/api/map").then((res) => {
       setStations(res.data);
     });
   }, []);

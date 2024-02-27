@@ -3,8 +3,6 @@ const fetch = require("node-fetch");
 const mongoose = require("mongoose");
 const Station = require("../data/station");
 
-
-
 async function fetchStationsAPI() {
   try {
     const stationsRes = await fetch(
@@ -92,6 +90,7 @@ function combineStationsAndReadings(stations, readings) {
 
 async function storeStations(stations) {
   await mongoose.connect(process.env.MONGO_URI);
+
   let count = 0;
   for (const station of stations) {
     const { id: id, ...rest } = station;
@@ -124,6 +123,6 @@ async function fetchAndStoreStations() {
   await storeStations(combinedStationsAndReadings);
 }
 
-// fetchAndStoreStations();
+fetchAndStoreStations();
 
 module.exports = fetchAndStoreStations;

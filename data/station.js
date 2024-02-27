@@ -14,10 +14,8 @@ const stationSchema = new mongoose.Schema({
   value: Number,
 });
 
-const Station = mongoose.model(
-  "Station",
-  stationSchema,
-  "stations"
-);
+const Station =
+  mongoose.models.Station ||
+  mongoose.model("Station", stationSchema, "stations");
 
 module.exports = Station;
