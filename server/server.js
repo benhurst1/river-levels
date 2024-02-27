@@ -5,11 +5,11 @@ const cron = require("node-cron");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const port = process.env.SERVER_PORT || 3002;
+const port = 3002;
 
-const fetchAndStoreStations = require("./fetchData");
+const fetchAndStoreStations = require("./fetchStations");
 
-cron.schedule("0 1 * * 6", fetchAndStoreStations);
+cron.schedule("*/15 * * * *", fetchAndStoreStations);
 
 app
   .prepare()

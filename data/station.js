@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const stationSchema = new mongoose.Schema({
+  id: String,
   notation: String,
   catchmentName: String,
   lat: Number,
@@ -9,8 +10,14 @@ const stationSchema = new mongoose.Schema({
   dateOpened: Date,
   riverName: String,
   town: String,
+  dateTime: Date,
+  value: Number,
 });
 
-const Station = mongoose.model('Station', stationSchema);
+const Station = mongoose.model(
+  "Station",
+  stationSchema,
+  "stations"
+);
 
 module.exports = Station;

@@ -7,7 +7,7 @@ mongoose.connect(process.env.MONGO_URI);
 
 async function fetchStations() {
   const res = await fetch(
-    `https://environment.data.gov.uk/flood-monitoring/id/stations`
+    "https://environment.data.gov.uk/flood-monitoring/id/measures?_limit=4000"
   );
   const data = await res.json();
 
