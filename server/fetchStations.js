@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const mongoose = require("mongoose");
 const Station = require("../data/station");
 
-mongoose.connect(process.env.MONGO_URI);
+
 
 async function fetchStationsAPI() {
   try {
@@ -91,6 +91,7 @@ function combineStationsAndReadings(stations, readings) {
 }
 
 async function storeStations(stations) {
+  await mongoose.connect(process.env.MONGO_URI);
   let count = 0;
   for (const station of stations) {
     const { id: id, ...rest } = station;
@@ -104,6 +105,7 @@ async function storeStations(stations) {
       console.log("station saved or updated", count, id);
     }
   }
+  await mongoose.connection.close();
 }
 
 async function fetchAndStoreStations() {
