@@ -1,7 +1,6 @@
 "use client";
 
 import axios from "axios";
-import { Suspense } from "react";
 import { useEffect, useState } from "react";
 
 export default function Page({ params }) {
@@ -15,7 +14,7 @@ export default function Page({ params }) {
         setStation(res.data.items);
         setLoading(false);
       });
-  }, []);
+  }, [params.notation]);
 
   function getCurrentReading() {
     if (Array.isArray(station.measures)) {

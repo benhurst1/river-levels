@@ -68,6 +68,7 @@ export default function Map({ stations }) {
                     <Link
                       href={`/station/${station.notation}`}
                       value={station.notation}
+                      className="text-blue-500"
                     >
                       More info...
                     </Link>
