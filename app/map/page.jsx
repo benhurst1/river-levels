@@ -14,7 +14,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col items-center py-10">
       <Map stations={stations} />
     </div>
   );

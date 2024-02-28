@@ -25,7 +25,7 @@ export default function Map({ stations }) {
   }
 
   return (
-    <div data-testid="google-maps" className="h-[700px] w-[700px]">
+    <div data-testid="google-maps" className="h-[700px] md:w-[700px] w-full">
       <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_API_KEY}>
         <GoogleMap
           mapContainerStyle={{
