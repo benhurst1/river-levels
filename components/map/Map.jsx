@@ -11,7 +11,6 @@ export default function Map({ stations }) {
   const [selectedMarker, setSelectedMarker] = useState(null);
 
   function handleClick(station) {
-    console.log(station);
     setSelectedMarker(station);
   }
 

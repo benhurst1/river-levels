@@ -1,4 +1,4 @@
-const Station = require("../../../data/station");
+const Station = require("../../../functions/station");
 const mongoose = require("mongoose");
 
 export const dynamic = "force-dynamic"; // defaults to auto

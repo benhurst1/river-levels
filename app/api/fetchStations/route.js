@@ -1,18 +1,12 @@
+global.TextEncoder = require("util").TextEncoder;
+
 const fetch = require("node-fetch");
 const mongoose = require("mongoose");
-const Station = require("../../../data/station");
-
-async function fetchStationsAPI() {
-  try {
-    const stationsRes = await fetch(
-      `https://environment.data.gov.uk/flood-monitoring/id/stations`
-    );
-    return stationsRes.json();
-  } catch (error) {
-    console.log("error", error);
-    return [];
-  }
-}
+const Station = require("../../../functions/station");
+const {
+  fetchStationsAPI,
+  fetchRecentReadingsAPI,
+} = require("../../../functions/fetchAPI");
 
 function filterStations(stationsData) {
   return stationsData.items
@@ -46,23 +40,6 @@ function filterStations(stationsData) {
         town: station.town,
       };
     });
-}
-
-async function fetchRecentReadings() {
-  try {
-    const stationsRes = await fetch(
-      `https://environment.data.gov.uk/flood-monitoring/id/measures`
-    );
-    if (!stationsRes.ok) {
-      console.log("Error: ", stationsRes.status, stationsRes.statusText);
-      return [];
-    }
-    console.log("stationsRes", stationsRes.status, stationsRes.statusText);
-    return stationsRes.json();
-  } catch (error) {
-    console.log("error", error);
-    return [];
-  }
 }
 
 function filterRecentReadings(readingsData) {
@@ -114,7 +91,7 @@ async function storeStations(stations) {
 
 async function fetchAndStoreStations() {
   const stations = await fetchStationsAPI();
-  const recentReadings = await fetchRecentReadings();
+  const recentReadings = await fetchRecentReadingsAPI();
   console.log("stations length", stations.items.length);
   console.log("recent readings length", recentReadings.items.length);
   const filteredStations = filterStations(stations);

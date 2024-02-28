@@ -17,4 +17,12 @@ describe("Navbar", () => {
       "/map"
     );
   });
+  it("renders home text", () => {
+    render(<Navbar />);
+    expect(screen.getByText("Home")).toBeInTheDocument();
+  });
+  it("renders home link with correct href", () => {
+    render(<Navbar />);
+    expect(screen.getByText("Home").closest("a")).toHaveAttribute("href", "/");
+  });
 });
