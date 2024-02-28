@@ -35,8 +35,8 @@ export default function Map({ stations }) {
           zoom={7}
           center={getCenter()}
           options={{
-            streetViewControl: false, // turns off street view
-            fullscreenControl: false, // turns off full screen option
+            streetViewControl: false,
+            fullscreenControl: false,
           }}
         >
           {stations.map((station, index) => (
@@ -56,6 +56,7 @@ export default function Map({ stations }) {
                   }}
                 >
                   <div className="p-3 text-black">
+                    <h2 className="font-semibold text-lg">{station.label}</h2>
                     <p>Town: {station.town}</p>
                     <p>River Name: {station.riverName}</p>
                     <p>Latest reading: {station.value}</p>

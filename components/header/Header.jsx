@@ -1,6 +1,5 @@
 import Navbar from "./Navbar";
 import Image from "next/image";
-import background from "../../public/riverbg.jpg";
 
 export default function Header() {
   const imageStyle = {
@@ -14,7 +13,12 @@ export default function Header() {
   return (
     <header data-testid="header" className="flex flex-col h-[200px] bg-white">
       <div className="relative w-full h-full">
-        <Image src="/riverbg.jpg" fill={true} style={imageStyle} />
+        <Image
+          src="/riverbg.jpg"
+          fill={true}
+          style={imageStyle}
+          alt="Canal river with trees and blue sky in the background"
+        />
         <div
           className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-4 text-white text-6xl "
           style={{ textShadow: "4px 4px 10px #000000" }}
