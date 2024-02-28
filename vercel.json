@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/fetchStations",
+      "schedule": "*/15 * * * *"
+    }
+  ]
+}

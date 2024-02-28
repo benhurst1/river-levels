@@ -8,7 +8,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = 3002;
 
-const fetchAndStoreStations = require("./fetchStations");
+const fetchAndStoreStations = require("../app/api/fetchStations/route");
 const retrieveStations = require("./retrieveStations");
 
 cron.schedule("*/15 * * * *", fetchAndStoreStations);

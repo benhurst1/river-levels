@@ -1,7 +1,6 @@
-require("dotenv").config({ path: ".env.local" });
 const fetch = require("node-fetch");
 const mongoose = require("mongoose");
-const Station = require("../data/station");
+const Station = require("../../../data/station");
 
 async function fetchStationsAPI() {
   try {
@@ -29,8 +28,14 @@ function filterStations(stationsData) {
         !Array.isArray(station.label)
     )
     .map((station) => {
+      const measure = station.measures.find(
+        (measure) =>
+          measure["@id"].endsWith("min-m") ||
+          measure["@id"].endsWith("min-mASD")
+      );
+
       return {
-        id: station.measures[0]["@id"],
+        id: measure ? measure["@id"] : null,
         notation: station.notation,
         catchmentName: station.catchmentName,
         lat: station.lat,
