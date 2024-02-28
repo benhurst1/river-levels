@@ -23,7 +23,7 @@ export default function Page({ params }) {
       );
 
       if (!measure) {
-        return <div>No measure found with notation ending in 'mASD'</div>;
+        return <div>No measure found</div>;
       } else {
         return (
           <div>
