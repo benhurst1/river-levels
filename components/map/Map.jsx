@@ -6,6 +6,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Map({ stations }) {
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -64,6 +65,12 @@ export default function Map({ stations }) {
                       Last updated:{" "}
                       {new Date(station.dateTime).toLocaleString()}
                     </p>
+                    <Link
+                      href={`/station/${station.notation}`}
+                      value={station.notation}
+                    >
+                      More info...
+                    </Link>
                   </div>
                 </InfoWindow>
               )}

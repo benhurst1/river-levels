@@ -1,6 +1,4 @@
-global.TextEncoder = require("util").TextEncoder;
-
-const fetch = require("node-fetch");
+require("dotenv").config({ path: ".env.local" });
 const mongoose = require("mongoose");
 const Station = require("../../../functions/station");
 const {
