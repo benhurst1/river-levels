@@ -1,5 +1,10 @@
-import { filterStations, mapFilteredStations } from "../../functions/filter.js";
-import stationsData from "../../data/stations.json";
+const {
+  filterStations,
+  mapFilteredStations,
+  filterRecentReadings,
+} = require("../../functions/filter.js");
+const stationsData = require("../../data/stations.json");
+const recentReadingsData = require("../../data/recentReadings.json");
 
 describe("filterStations", () => {
   it("should filter and transform the stations data correctly", () => {
@@ -44,7 +49,7 @@ describe("mapFilteredStations", () => {
 
     // Check that all stations in the result have the required properties
     result.forEach((station) => {
-      expect(station).toHaveProperty("measureId");
+      expect(station).toHaveProperty("id");
       expect(station).toHaveProperty("notation");
       expect(station).toHaveProperty("lat");
       expect(station).toHaveProperty("long");
@@ -52,6 +57,29 @@ describe("mapFilteredStations", () => {
       expect(station).toHaveProperty("dateOpened");
       expect(station).toHaveProperty("riverName");
       expect(station).toHaveProperty("town");
+    });
+  });
+});
+
+describe("filterRecentReadings", () => {
+  it("should filter and transform the recent readings data correctly", () => {
+    const result = filterRecentReadings(recentReadingsData);
+
+    // Check that the result is an array
+    expect(Array.isArray(result)).toBe(true);
+
+    // Check that all readings in the result have the required properties
+    result.forEach((reading) => {
+      expect(reading).toHaveProperty("id");
+      expect(reading).toHaveProperty("dateTime");
+      expect(reading).toHaveProperty("value");
+    });
+
+    // Check that dateTime is a string and value is a number in all readings in the result
+    result.forEach((reading) => {
+      expect(typeof reading.id).toBe("string");
+      expect(typeof reading.dateTime).toBe("string");
+      expect(typeof reading.value).toBe("number");
     });
   });
 });

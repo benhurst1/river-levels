@@ -5,19 +5,23 @@ const {
   fetchStationsAPI,
   fetchRecentReadingsAPI,
 } = require("../../../functions/fetchAPI");
-import { filterStations, filterRecentReadings } from "@/functions/filter";
+const {
+  filterStations,
+  filterRecentReadings,
+  mapFilteredStations
+} = require("../../../functions/filter");
 
 function combineStationsAndReadings(stations, readings) {
-  const combinedStations = stations.map((station) => {
-    const reading = readings.find((reading) => reading.id === station.id);
+  return stations.map((station) => {
+    const reading = readings.find(
+      (reading) => reading.id === station.id
+    );
     if (reading) {
       return { ...station, dateTime: reading.dateTime, value: reading.value };
     } else {
       return station;
     }
   });
-  console.log("combined stations length", combinedStations.length);
-  return combinedStations;
 }
 
 async function storeStations(stations) {
@@ -45,11 +49,12 @@ async function fetchAndStoreStations() {
   console.log("stations length", stations.items.length);
   console.log("recent readings length", recentReadings.items.length);
   const filteredStations = filterStations(stations);
+  const mappedStations = mapFilteredStations(filteredStations);
   const filteredRecentReadings = filterRecentReadings(recentReadings);
   console.log("filtered stations length", filteredStations.length);
   console.log("filtered readings length", filteredRecentReadings.length);
   const combinedStationsAndReadings = combineStationsAndReadings(
-    filteredStations,
+    mappedStations,
     filteredRecentReadings
   );
   await storeStations(combinedStationsAndReadings);

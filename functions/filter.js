@@ -1,6 +1,4 @@
-
-
-export function filterStations(stationsData) {
+function filterStations(stationsData) {
   return stationsData.items.filter(
     (station) =>
       station.lat &&
@@ -13,7 +11,7 @@ export function filterStations(stationsData) {
   );
 }
 
-export function mapFilteredStations(stations) {
+function mapFilteredStations(stations) {
   return stations.map((station) => {
     const measure = station.measures.find(
       (measure) =>
@@ -25,7 +23,7 @@ export function mapFilteredStations(stations) {
     }
 
     return {
-      measureId: measure ? measure["@id"] : null,
+      id: measure ? measure["@id"] : null,
       notation: station.notation,
       catchmentName: station.catchmentName || null,
       lat: station.lat,
@@ -38,11 +36,14 @@ export function mapFilteredStations(stations) {
   });
 }
 
-export function filterRecentReadings(readingsData) {
+function filterRecentReadings(readingsData) {
   return readingsData.items
     .filter(
       (reading) =>
-        reading.latestReading && !Array.isArray(reading.latestReading)
+        reading.latestReading && 
+        reading["@id"] &&
+        !Array.isArray(reading.latestReading) &&
+        !Array.isArray(reading.latestReading.value)
     )
     .map((reading) => {
       return {
@@ -52,3 +53,9 @@ export function filterRecentReadings(readingsData) {
       };
     });
 }
+
+module.exports = {
+  filterStations,
+  mapFilteredStations,
+  filterRecentReadings,
+};

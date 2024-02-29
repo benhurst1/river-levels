@@ -5,7 +5,7 @@ const stationSchema = new mongoose.Schema({
   notation: String,
   catchmentName: String,
   lat: Number,
-  lng: Number,
+  long: Number,
   label: String,
   dateOpened: Date,
   riverName: String,

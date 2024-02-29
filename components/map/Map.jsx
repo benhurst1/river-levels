@@ -22,7 +22,7 @@ export default function Map({ stations }) {
         lng: -1,
       };
     }
-    return { lat: selectedMarker.lat, lng: selectedMarker.lng };
+    return { lat: selectedMarker.lat, lng: selectedMarker.long };
   }
 
   return (
@@ -46,14 +46,14 @@ export default function Map({ stations }) {
               onClick={() => handleClick(station)}
               position={{
                 lat: station.lat,
-                lng: station.lng,
+                lng: station.long,
               }}
             >
               {selectedMarker === station && (
                 <InfoWindow
                   position={{
                     lat: station.lat,
-                    lng: station.lng,
+                    lng: station.long,
                   }}
                 >
                   <div className="p-3 text-black">

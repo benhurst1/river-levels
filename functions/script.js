@@ -1,5 +1,6 @@
 const stations = require("../data/stations");
-
+const { mapFilteredStations } = require("../functions/filter");
+const filterStations = require("../functions/filter").filterStations;
 
 // Check if any of the lat or long properties are arrays
 let latCount = 0;
@@ -18,7 +19,6 @@ let measuresArrayCount = {
   "4+": 0,
 };
 stations.items.forEach((station, index) => {
-
   if (!station.notation) {
     notationCount++;
   }
@@ -57,6 +57,10 @@ stations.items.forEach((station, index) => {
     }
   }
 });
+
+const filteredStations = filterStations(stations);
+const mappedStations = mapFilteredStations(filteredStations);
+console.log(mappedStations[0]);
 
 console.log("stations with no lat", latCount);
 console.log("stations with no long", longCount);
