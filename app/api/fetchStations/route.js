@@ -5,55 +5,7 @@ const {
   fetchStationsAPI,
   fetchRecentReadingsAPI,
 } = require("../../../functions/fetchAPI");
-
-function filterStations(stationsData) {
-  return stationsData.items
-    .filter(
-      (station) =>
-        station.lat &&
-        station.long &&
-        station.riverName &&
-        station.town &&
-        station.measures &&
-        !Array.isArray(station.lat) &&
-        !Array.isArray(station.long) &&
-        !Array.isArray(station.label)
-    )
-    .map((station) => {
-      const measure = station.measures.find(
-        (measure) =>
-          measure["@id"].endsWith("min-m") ||
-          measure["@id"].endsWith("min-mASD")
-      );
-
-      return {
-        id: measure ? measure["@id"] : null,
-        notation: station.notation,
-        catchmentName: station.catchmentName,
-        lat: station.lat,
-        lng: station.long,
-        label: station.label,
-        dateOpened: station.dateOpened,
-        riverName: station.riverName,
-        town: station.town,
-      };
-    });
-}
-
-function filterRecentReadings(readingsData) {
-  return readingsData.items
-    .filter(
-      (reading) =>
-        reading.latestReading && !Array.isArray(reading.latestReading)
-    )
-    .map((reading) => {
-      return {
-        id: reading["@id"],
-        dateTime: reading.latestReading.dateTime,
-        value: reading.latestReading.value,
-      };
-    });
-}
+import { filterStations, filterRecentReadings } from "@/functions/filter";
 
 function combineStationsAndReadings(stations, readings) {
   const combinedStations = stations.map((station) => {

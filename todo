@@ -1,0 +1,9 @@
+[] About page
+[] Map to colour markers based on if it is rising / falling
+[] Info window and station page to include warning of data more than x hours old.
+[] Get a lambda running for station and recent readings data
+    Maybe even split out so stations are collected weekly and recent readings replace every 15 minutes
+[] Home page
+    this can have some recent updates or flood warnings etc.
+[] search function in navigation to go straight to a specific station
+[] README
