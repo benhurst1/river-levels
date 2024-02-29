@@ -2,12 +2,12 @@ const {
   filterStations,
   mapFilteredStations,
   filterRecentReadings,
-} = require("../../functions/filter.js");
-const stationsData = require("../../data/stations.json");
-const recentReadingsData = require("../../data/recentReadings.json");
+} = require("../../functions/filter.js")
 
 describe("filterStations", () => {
   it("should filter and transform the stations data correctly", () => {
+    
+
     const result = filterStations(stationsData);
 
     // Check that the result is an array

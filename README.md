@@ -1,36 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# River Levels
 
-## Getting Started
+This project came about due to me being on a flooding alert system in my area, and the river near my house flooding and not getting an alert.
 
-First, run the development server:
+Live link: https://river-levels-two.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Current build
+You can go to the map page and view an interactive google map of the all the stations across the UK. Clicking on a marker will display some quick and most recent information about it. Clicking on more info will then take you through to a page about that station to display more information such as highest and lowest recorded values and date of opening.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Still to do
+There is still a lot of work to do to get to a point I feel satisfied with it:
+- I need to get data collected automatically and stored into mongodb, currently just doing it manually when I am working on it.
+- The data from the API is a bit of a mess, and I need to write better tests to understand it more.
+    - for instance, one of the 4000 stations has two sensors at different locations so lat and long is an array.
+- Add a search bar
+- Fill out home page and add an about page.
