@@ -8,14 +8,12 @@ const {
 const {
   filterStations,
   filterRecentReadings,
-  mapFilteredStations
-} = require("../../../functions/filter");
+  mapFilteredStations,
+} = require("../../../functions/transformStations");
 
 function combineStationsAndReadings(stations, readings) {
   return stations.map((station) => {
-    const reading = readings.find(
-      (reading) => reading.id === station.id
-    );
+    const reading = readings.find((reading) => reading.id === station.id);
     if (reading) {
       return { ...station, dateTime: reading.dateTime, value: reading.value };
     } else {
@@ -44,8 +42,12 @@ async function storeStations(stations) {
 }
 
 async function fetchAndStoreStations() {
-  const stations = await fetchStationsAPI();
-  const recentReadings = await fetchRecentReadingsAPI();
+  const stations = await fetchAPI(
+    `https://environment.data.gov.uk/flood-monitoring/id/stations`
+  );
+  const recentReadings = await fetchAPI(
+    `https://environment.data.gov.uk/flood-monitoring/id/measures`
+  );
   console.log("stations length", stations.items.length);
   console.log("recent readings length", recentReadings.items.length);
   const filteredStations = filterStations(stations);

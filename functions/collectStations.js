@@ -1,13 +1,14 @@
-async function fetchStationsAPI() {
-  try {
-    const stationsRes = await fetch(
-      `https://environment.data.gov.uk/flood-monitoring/id/stations`
-    );
-    return stationsRes.json();
-  } catch (error) {
-    console.log("error", error);
-    return [];
-  }
+function filterStations(stationsData) {
+  return stationsData.items.filter(
+    (station) =>
+      station.lat &&
+      station.long &&
+      station.measures &&
+      station.notation &&
+      !Array.isArray(station.lat) &&
+      !Array.isArray(station.long) &&
+      Array.isArray(station.measures)
+  );
 }
 
-module.exports = { fetchStationsAPI };
+module.exports = { fetchStationsAPI, filterStations };

@@ -1,6 +1,6 @@
 const stations = require("../data/stations");
-const { mapFilteredStations } = require("../functions/filter");
-const filterStations = require("../functions/filter").filterStations;
+const { mapFilteredStations } = require("./transformStations");
+const filterStations = require("./transformStations").filterStations;
 
 // Check if any of the lat or long properties are arrays
 let latCount = 0;
