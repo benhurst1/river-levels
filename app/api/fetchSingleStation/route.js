@@ -1,4 +1,4 @@
-const { fetchSingleStationAPI } = require("../../../functions/fetchAPI");
+import { fetchSingleStationAPI } from "../../../functions/fetchAPI";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 

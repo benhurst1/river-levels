@@ -18,6 +18,7 @@ export default function Header() {
           fill={true}
           style={imageStyle}
           alt="Canal river with trees and blue sky in the background"
+          quality={50}
         />
         <div
           className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-4 text-white text-6xl "
