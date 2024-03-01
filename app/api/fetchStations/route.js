@@ -11,17 +11,6 @@ const {
   mapFilteredStations,
 } = require("../../../functions/transformStations");
 
-function combineStationsAndReadings(stations, readings) {
-  return stations.map((station) => {
-    const reading = readings.find((reading) => reading.id === station.id);
-    if (reading) {
-      return { ...station, dateTime: reading.dateTime, value: reading.value };
-    } else {
-      return station;
-    }
-  });
-}
-
 async function storeStations(stations) {
   await mongoose.connect(process.env.MONGO_URI);
 
