@@ -1,6 +1,4 @@
-const {
-  filterRecentReadings,
-} = require("../../functions/collectLatestReadings");
+const { filterRecentReadings } = require("../../functions/collectStations");
 const recentReadingsData = require("../../data/recentReadings.json");
 
 let filteredReadings;
@@ -23,6 +21,7 @@ describe("filterRecentReadings", () => {
       expect(reading).toHaveProperty("dateTime");
       expect(reading).toHaveProperty("value");
       expect(reading).toHaveProperty("unitName");
+      expect(reading).toHaveProperty("notation");
     });
   });
   it("should have the correct types", () => {
@@ -31,6 +30,7 @@ describe("filterRecentReadings", () => {
       expect(typeof reading.dateTime).toBe("string");
       expect(typeof reading.value).toBe("number");
       expect(typeof reading.unitName).toBe("string");
+      expect(typeof reading.notation).toBe("string");
     });
   });
   it("should have only have readings with unitName m mOAD mASD", () => {

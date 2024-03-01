@@ -1,10 +1,8 @@
 const {
-  filterRecentReadings,
-  combineStationsAndReadings,
-} = require("../../functions/collectLatestReadings");
-const {
   filterStations,
   mapStations,
+  filterRecentReadings,
+  combineStationsAndReadings,
 } = require("../../functions/collectStations");
 const recentReadingsData = require("../../data/recentReadings");
 const stationsData = require("../../data/stations");
@@ -51,6 +49,7 @@ describe("combineStationsAndReadings", () => {
       station.measures.forEach((measure) => {
         expect(typeof measure).toBe("object");
       });
+      expect(station.measures.length).toBeGreaterThan(0);
     });
   });
   it("should have a measures property that is an array of objects with the required properties", () => {
@@ -59,6 +58,8 @@ describe("combineStationsAndReadings", () => {
         expect(measure).toHaveProperty("measureId");
         expect(measure).toHaveProperty("parameterName");
         expect(measure).toHaveProperty("unitName");
+        expect(measure).toHaveProperty("dateTime");
+        expect(measure).toHaveProperty("value");
       });
     });
   });
@@ -69,6 +70,8 @@ describe("combineStationsAndReadings", () => {
         expect(typeof measure.measureId).toBe("string");
         expect(typeof measure.parameterName).toBe("string");
         expect(typeof measure.unitName).toBe("string");
+        expect(typeof measure.dateTime).toBe("string");
+        expect(typeof measure.value).toBe("number");
       });
     });
   });

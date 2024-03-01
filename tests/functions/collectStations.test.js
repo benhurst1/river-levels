@@ -44,6 +44,11 @@ describe("filterStations", () => {
       expect(typeof station.measures).toBe("object");
     });
   });
+  it("should have only have stations with measures greater than 0", () => {
+    filteredStations.forEach((station) => {
+      expect(station.measures.length).toBeGreaterThan(0);
+    });
+  });
   it("should have a measures with each measure having the required properties", () => {
     filteredStations.forEach((station) => {
       station.measures.forEach((measure) => {
