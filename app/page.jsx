@@ -6,16 +6,22 @@ import Link from "next/link";
 
 export default function Home() {
   const [warnings, setWarnings] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [openSeverityIndex, setOpenSeverityIndex] = useState(null);
   const [openAreaIndex, setOpenAreaIndex] = useState(null);
 
   useEffect(() => {
     axios.get("/api/index").then((res) => {
       setWarnings(res.data);
+      setLoading(false);
     });
   }, []);
 
-  if (warnings.length === 0) return <h1>No warnings</h1>;
+  if (loading) {
+    return <h1>Loading...</h1>;
+  } else if (warnings.length === 0) {
+    return <h1>No warnings</h1>;
+  }
 
   const categories = warnings.reduce((acc, warning) => {
     if (!acc[warning.severityLevel]) {
@@ -36,7 +42,7 @@ export default function Home() {
       }, {});
 
       return (
-        <div key={severityIndex} className="mt-3 ml-10 w-[400px]">
+        <div key={severityIndex} className="mt-3 mx-auto w-[400px]">
           <button
             onClick={() => {
               setOpenSeverityIndex(
