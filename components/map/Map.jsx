@@ -58,23 +58,20 @@ export default function Map({ stations }) {
                 >
                   <div className="p-3 text-black">
                     <h2 className="font-semibold text-lg">{station.label}</h2>
-                    <p>Town: {station.town}</p>
-                    <p>River Name: {station.riverName}</p>
+                    {station.town && <p>Town: {station.town}</p>}
+                    {station.riverName && (
+                      <p>River Name: {station.riverName}</p>
+                    )}
                     <p>Latest Readings:</p>
                     {station.measures.map((measure, index) => {
                       if (measure !== null) {
                         return (
                           <p key={index}>
-                            {measure.value}
-                            {measure.unitName}
+                            {measure.value} {measure.unitName}
                           </p>
                         );
                       }
                     })}
-                    {/* <p>
-                      Last updated:{" "}
-                      {new Date(station.measures[0].dateTime).toLocaleString()}
-                    </p> */}
                     <Link
                       href={`/station/${station.notation}`}
                       value={station.notation}
@@ -82,6 +79,10 @@ export default function Map({ stations }) {
                     >
                       More info...
                     </Link>
+                    <p className="text-[10px]">
+                      Last updated:{" "}
+                      {new Date(station.measures[0].dateTime).toLocaleString()}
+                    </p>
                   </div>
                 </InfoWindow>
               )}

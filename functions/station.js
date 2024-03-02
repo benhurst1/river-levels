@@ -15,6 +15,6 @@ const stationSchema = new mongoose.Schema({
 
 const Station =
   mongoose.models.Station ||
-  mongoose.model("Station", stationSchema, "stationsTest");
+  mongoose.model("Station", stationSchema, "stations");
 
 module.exports = Station;
