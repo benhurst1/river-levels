@@ -79,10 +79,14 @@ export default function Map({ stations }) {
                     >
                       More info...
                     </Link>
-                    <p className="text-[10px]">
-                      Last updated:{" "}
-                      {new Date(station.measures[0].dateTime).toLocaleString()}
-                    </p>
+                    {station.measures && (
+                      <p className="text-[10px]">
+                        Last updated:{" "}
+                        {new Date(
+                          station.measures[0].dateTime
+                        ).toLocaleString()}
+                      </p>
+                    )}
                   </div>
                 </InfoWindow>
               )}
