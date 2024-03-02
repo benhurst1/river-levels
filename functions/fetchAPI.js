@@ -1,11 +1,11 @@
-export async function fetchAPI(endpoint) {
+async function fetchAPI(endpoint) {
   try {
     console.log(`fetching ${endpoint}...`);
-    const res = await fetch(endpoint);
-    console.log("fetched", res.status);
-    return res.json();
+    return await fetch(endpoint).then((res) => res.json());
   } catch (error) {
     console.log("error", error);
     return [];
   }
 }
+
+module.exports = fetchAPI;
