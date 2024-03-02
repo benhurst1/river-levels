@@ -60,11 +60,21 @@ export default function Map({ stations }) {
                     <h2 className="font-semibold text-lg">{station.label}</h2>
                     <p>Town: {station.town}</p>
                     <p>River Name: {station.riverName}</p>
-                    <p>Latest reading: {station.value}</p>
-                    <p>
+                    <p>Latest Readings:</p>
+                    {station.measures.map((measure, index) => {
+                      if (measure !== null) {
+                        return (
+                          <p key={index}>
+                            {measure.value}
+                            {measure.unitName}
+                          </p>
+                        );
+                      }
+                    })}
+                    {/* <p>
                       Last updated:{" "}
-                      {new Date(station.dateTime).toLocaleString()}
-                    </p>
+                      {new Date(station.measures[0].dateTime).toLocaleString()}
+                    </p> */}
                     <Link
                       href={`/station/${station.notation}`}
                       value={station.notation}

@@ -66,7 +66,6 @@ describe("combineStationsAndReadings", () => {
   it("should have a measures property that is an array of objects with the correct types", () => {
     combinedReadingsStations.forEach((station) => {
       station.measures.forEach((measure) => {
-        console.log(station);
         expect(typeof measure.measureId).toBe("string");
         expect(typeof measure.parameterName).toBe("string");
         expect(typeof measure.unitName).toBe("string");

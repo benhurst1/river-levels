@@ -92,17 +92,29 @@ function mapStations(stationsData) {
 }
 
 function combineStationsAndReadings(stations, readings) {
-  return stations.map((station) => {
-    station.measures = station.measures.map((measure) => {
-      const reading = readings.find(
-        (reading) => reading.id === measure.measureId
-      );
-      if (reading) {
-        return { ...measure, dateTime: reading.dateTime, value: reading.value };
+  return stations
+    .map((station) => {
+      station.measures = station.measures
+        .map((measure) => {
+          const reading = readings.find(
+            (reading) => reading.id === measure.measureId
+          );
+          if (reading && reading.dateTime && reading.value !== undefined) {
+            return {
+              ...measure,
+              dateTime: reading.dateTime,
+              value: reading.value,
+            };
+          }
+          return null;
+        })
+        .filter((measure) => measure !== null);
+      if (station.measures.length > 0) {
+        return station;
       }
-    });
-    return station;
-  });
+      return null;
+    })
+    .filter((station) => station !== null);
 }
 
 async function storeStations(stationsData) {
