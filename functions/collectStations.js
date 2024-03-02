@@ -1,6 +1,6 @@
 require("dotenv").config({ path: ".env.local" });
 const mongoose = require("mongoose");
-const Station = require("./station");
+
 
 async function fetchAPI(endpoint) {
   try {
@@ -118,6 +118,21 @@ function combineStationsAndReadings(stations, readings) {
 }
 
 async function storeStations(stationsData) {
+  const stationSchema = new mongoose.Schema({
+    id: { type: String, unique: true },
+    notation: String,
+    catchmentName: String,
+    lat: Number,
+    long: Number,
+    label: String,
+    dateOpened: Date,
+    measures: Array,
+    riverName: String,
+    town: String,
+  });
+
+  const Station = mongoose.model("Station", stationSchema, "stations");
+
   await mongoose.connect(process.env.MONGO_URI);
 
   for (const stationData of stationsData) {

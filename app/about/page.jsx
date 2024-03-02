@@ -5,7 +5,7 @@ export default function Page() {
     <div className="w-3/6 mx-auto mt-10 flex flex-col gap-2">
       <h1 className={h1Class}>About this project</h1>
       <p>
-        This project came about as a result of the UK's recent flooding which
+        This project came about as a result of the recent flooding in the UK which
         affected my area, despite being on a flood alert system and not getting
         one. I found an API by the Environment Agency which provides flood
         warnings and levels from stations across the UK. I decided to build a
@@ -32,7 +32,7 @@ export default function Page() {
         <li>Jest</li>
         <li>React Testing Library</li>
         <li>Google Maps API</li>
-        <li>Environment Agency's flood monitoring API</li>
+        <li>Environment Agency flood monitoring API</li>
       </ul>
 
       <h1 className={h1Class}>Challenges</h1>
