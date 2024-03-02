@@ -3,6 +3,7 @@ import Link from "next/link";
 export default function Navbar() {
   const routes = [
     { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
     { name: "Map", path: "/map" },
   ];
 

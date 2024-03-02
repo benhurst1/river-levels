@@ -5,12 +5,18 @@ This project came about due to me being on a flooding alert system in my area, a
 Live link: https://river-levels-two.vercel.app/
 
 ## Current build
-You can go to the map page and view an interactive google map of the all the stations across the UK. Clicking on a marker will display some quick and most recent information about it. Clicking on more info will then take you through to a page about that station to display more information such as highest and lowest recorded values and date of opening.
 
-## Still to do
-There is still a lot of work to do to get to a point I feel satisfied with it:
-- I need to get data collected automatically and stored into mongodb, currently just doing it manually when I am working on it.
-- The data from the API is a bit of a mess, and I need to write better tests to understand it more.
-    - for instance, one of the 4000 stations has two sensors at different locations so lat and long is an array.
-- Add a search bar
-- Fill out home page and add an about page.
+- Map page
+  - Clicking on a marker on the map will display quick information about that station.
+  - The more info link will take you to a page about that station to display more details.
+- Home page
+  - This lists all the most recent flood warnings in order of severity, then by area. You can click through on the warning to see more details including location on a map.
+
+## Challenges
+
+The first main challenge was working out how to retrieve data from an API using a backend server and then delivering that data to the frontend. The answer ended up being serverless functions built-in to Vercel, and creating those API routes.
+
+The next challenge was figuring out the data was structured and making sure I am only delivering the data required by React. For a while, all the transformations were in a single function, but I wanted to split them out to make it more manageable. Tests helped a lot with this.
+
+## Future
+I'm not likely to contribute any more to this project, and if I would do anything, I would remake it using Typescript, better tests, and make functions smaller and simpler.
